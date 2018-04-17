@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load url_replace %}
+
+	{% block content %}
+	<div class="main-container">
+		<div class="container-fluid">
+			<div id="table-list">
+				<div class="navigation-bar">
+					<form action="/fetch_by_tag" method="get">
+						Tag Name to search
+						<input type="text" id="tag-search" name="tag-search"/>
+						<input type="submit" value="Submit" class="btn btn-info" />
+					</form>
+					<form action="/fetch_by_song" method="get">
+						Song Name to search
+						<input type="text" id="song-search" name="song-search"/>
+						<input type="submit" value="Submit" class="btn btn-info" />
+					</form>
+					<form action="/fetch_by_artist" method="get">
+						Artist Name to search
+						<input type="text" id="artist-search" name="artist-search"/>
+						<input type="submit" value="Submit" class="btn btn-info" />
+					</form>
+					<form action="/fetch_similar_songs" method="get">
+						Similar Song for Song title
+						<input type="text" id="song-title" name="song-title"/>
+						<input type="submit" value="Submit" class="btn btn-info" />
+					</form>
+				</div>
+				<span>
+					Result fetched {{ songs.paginator.count }} hits
+				</span>
+				<div class="pagination">
+		    		<span class="step-links">
+			        {% if songs.has_previous %}
+					  <a class="button btn btn-info" href="?{% url_replace page=songs.previous_page_number%}">Previous</a>
+
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ songs.number }} of {{ songs.paginator.num_pages }}.
+			        </span>
+
+			        {% if songs.has_next %}
+						<a class="button btn btn-info" href="?{% url_replace page=songs.next_page_number%}">Next</a>
+			        {% endif %}
+		    		</span>
+				</div>
+				<div class="list-table no-padding">
+					<div class="container-fluid">
+						<table style="width: 100%;">
+							<tbody>
+								<tr>
+									<th>
+										Track ID
+									</th>
+									<th>
+										Title
+									</th>
+									<th>
+										Artist
+									</th>
+									<th>
+										Timestamp
+									</th>
+									<th>
+										Similar Songs
+									</th>
+									<th>
+										Tags
+									</th>
+								</tr>
+								{% for song in songs %}
+									<tr>
+										<td>
+											<a href="/show?id={{song.track_id}}">
+												{{ song.track_id }}
+											</a>
+										</td>
+										<td>
+											{{ song.title }}
+										</td>
+										<td>
+											{{ song.artist_name }}
+										</td>
+										<td>
+											{{ song.timestamp }}
+										</td>
+										<td>
+											{% for similar in song.similars|slice:":5" %}
+												{{ similar |linebreaks }}
+											{% endfor %}
+											{% if song.similars|length > 5 %}
+												<a href="/show?id={{song.track_id}}">
+													Click here for full list of Similar song
+												</a>
+											{% endif %}
+										</td>
+										<td>
+											{% for tag in song.tags.all %}
+												{{ tag.tag_name }} : {{ tag.score|linebreaks }}
+											{% endfor %}
+											{% if song.tags.all.count > 5 %}
+												<a href="/show?id={{song.track_id}}">
+													Click here for full list of tags
+												</a>
+											{% endif %}		
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}

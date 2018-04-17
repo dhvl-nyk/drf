@@ -1,0 +1,26 @@
+<html>
+		<head>
+				<title>{% block title %}DRF{% endblock %}</title>
+				<style>
+	        body {
+	    		font-family: georgia;
+					}
+					#container {
+					    width: 50%;
+					    margin-top: 2em;
+					    margin-left: auto;
+					    margin-right: auto;
+					}
+					.main-container {
+						box-sizing: border-box;
+					}
+	    	</style>
+				{% load staticfiles %}
+				<link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+				<link href="{% static "main.css" %}" rel="stylesheet">
+		</head>
+		<body>
+			{% block content %}
+			{% endblock %}
+		</body>
+</html>

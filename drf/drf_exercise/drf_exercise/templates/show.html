@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+	{% block content %}
+	<div class="container-fluid">
+		<table style="width: 100%;">
+			<tbody>
+				<tr>
+					<th>
+						Track ID
+					</th>
+					<th>
+						Title
+					</th>
+					<th>
+						Artist
+					</th>
+					<th>
+						Timestamp
+					</th>
+					<th>
+						Similar Songs
+					</th>
+					<th>
+						Tags
+					</th>
+				</tr>
+				{% for song in songs %}
+					<tr>
+						<td>
+							<a href="/show?id={{song.track_id}}">
+								{{ song.track_id }}
+							</a>
+						</td>
+						<td>
+							{{ song.title }}
+						</td>
+						<td>
+							{{ song.artist_name }}
+						</td>
+						<td>
+							{{ song.timestamp }}
+						</td>
+						<td>
+						{% for similar in song.similars %}
+							{{ similar |linebreaks }}
+						{% endfor %}
+						</td>
+						<td>
+						{% for tag in song.tags.all %}
+							{{ tag.tag_name }} : {{ tag.score|linebreaks }}
+						{% endfor %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	{% endblock %}

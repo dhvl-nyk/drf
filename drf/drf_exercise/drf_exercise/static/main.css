@@ -1,0 +1,120 @@
+body {
+  background-color: #F1F1F1;
+  font-family: "open-sans";
+  font-size: 14px;
+}
+
+.header {
+  box-sizing: border-box;
+}
+
+.navbar-default {
+  background-color: #2b333b;
+  border: 0px;
+  border-radius: 0px;
+}
+
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin: 0px
+}
+
+.navbar-toggle {
+  position: relative;
+  float: right;
+  margin-right: 15px;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.navbar-header {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.navbar-brand {
+  float: left;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #777;
+}
+
+.navbar-toggle .button {
+  text-transform: uppercase;
+}
+
+#table-list {
+  font-family: "open-sans";
+  font-size: 14px;
+  color: #54575A;
+}
+
+#table-list .navigation-bar {
+  padding: 15px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+#table-list .list-table {
+  background: #FFFFFF;
+  color: #54575A;
+}
+
+#table-list .no-padding {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+#table-list form {
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 33%;
+  align-items: center;
+}
+
+#table-list form input {
+  margin: 0px;
+  height: 30px;
+}
+
+#table-list .pagination {
+  margin: 0px;
+  align-self: center;
+}
+
+.list-table tbody {
+  box-sizing: border-box;
+}
+
+.list-table tbody tr {
+  border-bottom: 1px solid #bbbbbb;
+}
+
+.list-table tbody th {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.list-table tbody td {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  text-transform: capitalize;
+  color: #656565;
+  text-align: left;
+}
